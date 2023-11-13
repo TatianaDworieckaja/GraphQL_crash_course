@@ -1,0 +1,95 @@
+Queries and Mutations
+
+1.
+query GetGames{
+  reviews {
+    rating,
+    content,
+    author{
+      name,
+      verified
+    }
+    game{
+      title,
+      platform
+    }
+  }
+}
+
+2.
+query GetSingleReview($id: ID!){
+  review(id: $id) {
+    id,
+    rating,
+    author {
+      name
+    }
+    content,
+    game{
+      title
+    }
+  }
+}
+
+
+JSON:
+{
+  "id": "2"
+}
+
+3. query GetGameQuery ($id: ID!){
+  game(id: $id) {
+    id,
+    title,
+    platform,
+    reviews {
+      rating,
+      content
+      author {
+        name
+      }
+    }
+  }
+}
+
+JSON:
+{
+  "id": "2"
+}
+
+4.mutation addMutation($game: AddGameInput!){
+addGame(game: $game){
+id,
+title,
+platform
+}
+}
+
+JSON:
+{
+"game": {
+   "title": "new_game",
+  "platform": ["x-box"]
+}
+}
+
+5. mutation editMutation($id: ID!, $edits: EditGameInput!){
+updateGame(id: $id, edits: $edits){
+  title,
+  platform
+}
+}
+
+JSON:
+{
+  "id": "3",
+  "edits": {
+    "title": "updatedName",
+    "platform": ["updatedPlatform1", "updatedPlatform2"]
+    }
+}
+
+
+
+
+
